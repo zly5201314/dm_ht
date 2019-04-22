@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+
+    <!--用百度的静态资源库的cdn安装bootstrap环境-->
+
+    <!-- 引入jquery-->
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+
+    <!-- 引入bootstrap的css、js文件 -->
+    <link rel="stylesheet" href="./bootstrap3/css/bootstrap.css">
+    <script type="text/javascript"  src="./bootstrap3/js/bootstrap.js"></script>
+
+    <!-- 引入tree的css、js文件 -->
+    <link rel="stylesheet" href="./js/bootstrap-treeview/bootstrap-treeview.min.css">
+    <script type="text/javascript" src="./js/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+
+    <!-- 引入选项卡tabs的css、js文件 -->
+    <link rel="stylesheet" href="./js/bootStrap-addTabs/bootstrap.addtabs.css">
+    <script type="text/javascript" src="./js/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+
+    <!-- 引入选项卡tabs的css、js文件 -->
+    <link rel="stylesheet" href="./js/bootStrap-addTabs/bootstrap.addtabs.css">
+    <script type="text/javascript" src="./js/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+
+    <!-- 引入table的css、js -->
+    <link rel="stylesheet" href="./js/bootstrap-table/bootstrap-table.css">
+    <script type="text/javascript" src="./js/bootstrap-table/bootstrap-table.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+
+    <!-- 引入bootstrap bootbox的css、js -->
+    <script type="text/javascript" src="./js/bootstrap-bootbox/bootbox.js"></script>
+    <!-- 引入bootstrap datetime的css、js -->
+    <link type="text/css" rel="stylesheet" href="./js/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
+    <script type="text/javascript" src="./js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="./js/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <!-- 引入bootstrap fileinput的css、js -->
+    <link type="text/css" rel="stylesheet" href="./js/bootstrap-fileinput/css/fileinput.css">
+    <script type="text/javascript" src="./js/bootstrap-fileinput/js/fileinput.js"></script>
+    <script type="text/javascript" src="./js/bootstrap-fileinput/js/locales/zh.js"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">景点主页面</a>
+        </div>
+        <div class="navbar-right">
+            <a class="navbar-brand" href="#">注销</a>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">1
+            <div id="myTree"></div>
+        </div>
+        <div class="col-md-10">2
+
+            <div id="myTabs">
+                <!-- 新选项卡 -->
+                <ul class="nav nav-tabs" id="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#home" role="tab" data-toggle="tab">欢迎</a>
+                    </li>
+                </ul>
+
+                <!-- 选项卡下内容 -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+
+    $(function(){
+        tree();
+    })
+
+
+    function tree(){
+        $.ajax({
+            url:'./getTree',
+            type:'get',
+            success:function(data){
+                $('#myTree').treeview({
+                    data:data,
+                    onNodeSelected:function(event, node) {
+                        //处理选项卡
+                        $.addtabs({iframeHeight: 550});
+                        $.addtabs.add({
+                            id:node.id,
+                            title:node.text,
+                            url:"."+node.href
+                    });
+                    }
+                })
+            }
+        })
+    }
+
+
+</script>
+</html>

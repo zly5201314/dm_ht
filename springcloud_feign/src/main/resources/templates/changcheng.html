@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+    <!--用百度的静态资源库的cdn安装bootstrap环境-->
+
+    <!-- 引入jquery-->
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+
+    <!-- 引入bootstrap的css、js文件 -->
+    <link rel="stylesheet" href="./bootstrap3/css/bootstrap.css">
+    <script type="text/javascript"  src="./bootstrap3/js/bootstrap.js"></script>
+
+    <!-- 引入tree的css、js文件 -->
+    <link rel="stylesheet" href="./js/bootstrap-treeview/bootstrap-treeview.min.css">
+    <script type="text/javascript" src="./js/bootstrap-treeview/bootstrap-treeview.min.js"></script>
+
+    <!-- 引入选项卡tabs的css、js文件 -->
+    <link rel="stylesheet" href="./js/bootStrap-addTabs/bootstrap.addtabs.css">
+    <script type="text/javascript" src="./js/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+
+    <!-- 引入选项卡tabs的css、js文件 -->
+    <link rel="stylesheet" href="./js/bootStrap-addTabs/bootstrap.addtabs.css">
+    <script type="text/javascript" src="./js/bootStrap-addTabs/bootstrap.addtabs.min.js"></script>
+
+    <!-- 引入table的css、js -->
+    <link rel="stylesheet" href="./js/bootstrap-table/bootstrap-table.css">
+    <script type="text/javascript" src="./js/bootstrap-table/bootstrap-table.js"></script>
+    <script type="text/javascript" src="../js/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+
+    <!-- 引入bootstrap bootbox的css、js -->
+    <script type="text/javascript" src="./js/bootstrap-bootbox/bootbox.js"></script>
+    <!-- 引入bootstrap datetime的css、js -->
+    <link type="text/css" rel="stylesheet" href="./js/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
+    <script type="text/javascript" src="./js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="./js/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <!-- 引入bootstrap fileinput的css、js -->
+    <link type="text/css" rel="stylesheet" href="./js/bootstrap-fileinput/css/fileinput.css">
+    <script type="text/javascript" src="./js/bootstrap-fileinput/js/fileinput.js"></script>
+    <script type="text/javascript" src="./js/bootstrap-fileinput/js/locales/zh.js"></script>
+
+</head>
+<body>
+<table class="table" id="tab2"></table>
+</body>
+
+<script>
+    $(function(){
+        //初始化用户表
+
+        initChangCheng();
+    })
+
+
+
+    //初始化用户表
+    function initChangCheng(){
+
+        $("#tab2").bootstrapTable({
+            toolbar:'#toolbar',
+            url:'./queryChangCheng',//获取数据地址
+
+            columns:[
+                {field:"check",checkbox:true},
+                {field:"id",title:"id"},
+                {field:"img",title:"头像",formatter:function(value,row,index){
+                        return "<img width='80px' height='150px' src='"+value+"'>";
+                    }},
+                {field:"userName",title:"名称"},
+                {field:"price",title:"价格"},
+                {field:'info',title:"简介"},
+                {field:"userDate",title:"开办日期"},
+
+                {field:"tools",title:"操作",formatter:function(value,row,index){
+                        return "<a href='javascript:yuDing("+row.id+")'>立即预订</a>";
+                    }}
+            ]
+        })
+    }
+
+
+
+
+</script>
+</html>

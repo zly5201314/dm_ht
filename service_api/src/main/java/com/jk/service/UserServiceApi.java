@@ -1,6 +1,7 @@
 package com.jk.service;
 
 import com.jk.model.TreeBean;
+import com.jk.model.User;
 import com.jk.model.UserBean;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,4 +23,6 @@ public interface UserServiceApi {
 
     @GetMapping(value = "/hi")
     String hiService(@RequestParam(value = "name") String name);
+
+
 }

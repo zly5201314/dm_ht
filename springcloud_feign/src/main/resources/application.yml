@@ -5,10 +5,19 @@ eureka:
       defaultZone: http://localhost:8080/eureka/
 server:
   port: 8084
-spring:
-  application:
-    name: service-feign
+
 feign:
   hystrix:
     enabled: true
+
+spring:
+  application:
+    name: service-feign
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+  data:
+    solr:
+      host: http://127.0.0.1:8080/solr
 
